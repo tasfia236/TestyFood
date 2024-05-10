@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider  } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Swal from 'sweetalert2'
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProviders";
+import auth from "../../firebase/firebase.config";
+import axios from "axios";
 
 const LogIn = () => {
-    
+
     const googleProvider = new GoogleAuthProvider();
     const { signInUser } = useContext(AuthContext);
     const location = useLocation();
@@ -16,52 +18,60 @@ const LogIn = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-     //   console.log(email, password);
+        //   console.log(email, password);
 
         signInUser(email, password)
             .then(result => {
-                console.log(result.user)
-                Swal.fire({
-                    title: "User Logged In Successfully",
-                    icon: "success",
-                    showClass: {
-                      popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `
-                    },
-                    hideClass: {
-                      popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `
-                    }
-                  });
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = { email }
 
-                navigate(location?.state ? location.state : '/')
+                axios.post('http://localhost:8000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.success) {
+                            Swal.fire({
+                                title: "User Logged In Successfully",
+                                icon: "success",
+                                showClass: {
+                                    popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                              `
+                                },
+                                hideClass: {
+                                    popup: `
+                                animate__animated
+                                animate__fadeOutDown
+                                animate__faster
+                              `
+                                }
+                            });
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })
             })
             .catch(error => {
                 Swal.fire({
                     title: `error logging in, ${error.code}`,
                     icon: "warning",
                     showClass: {
-                      popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `
+                        popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                  `
                     },
                     hideClass: {
-                      popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `
+                        popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                   animate__faster
+                  `
                     }
-                  });
-            })
+                });
+            });
     }
 
     const HandleGoogleSignIn = () => {
@@ -72,20 +82,20 @@ const LogIn = () => {
                     title: "User Logged In Successfully",
                     icon: "success",
                     showClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeInUp
                         animate__faster
                       `
                     },
                     hideClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeOutDown
                         animate__faster
                       `
                     }
-                  });
+                });
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
@@ -93,28 +103,28 @@ const LogIn = () => {
                     title: `error logging in, ${error.code}`,
                     icon: "warning",
                     showClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeInUp
                         animate__faster
                       `
                     },
                     hideClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeOutDown
                         animate__faster
                       `
                     }
-                  });
+                });
                 console.error(error);
             })
     }
 
     return (
-        
+
         <div className="p-12 min-h-screen bg-base-200">
-          <Helmet>
+            <Helmet>
                 <title>Testy Food | Login</title>
             </Helmet>
             <div className="">
@@ -142,7 +152,7 @@ const LogIn = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <div className="form-control">
-                            <button onClick={ HandleGoogleSignIn } className="btn text-white bg-red-600">Google login</button>
+                            <button onClick={HandleGoogleSignIn} className="btn text-white bg-red-600">Google login</button>
                         </div>
                     </form>
                     <p className="pl-5">
