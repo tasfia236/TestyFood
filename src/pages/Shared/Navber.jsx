@@ -8,11 +8,11 @@ import { IoPersonOutline } from "react-icons/io5";
 const Navber = () => {
 
     const { user, logOut } = useContext(AuthContext)
-    
+
     const handleLogOut = () => {
         logOut()
-        .then(() =>{})
-        .catch( error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
 
     const navItems = <>
@@ -31,7 +31,9 @@ const Navber = () => {
                     <ul tabIndex={0} className="menu menu-sm fixed z-[9999] dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navItems}
                         {user && <>
-                            <li><Link to='/mylist'>My List</Link></li>
+                            <li><Link to='/addfood'>Add Food</Link></li>
+                            <li><Link to='/managefood'>Manage Food</Link></li>
+                            <li><Link to='/reqfood'>Requested Food</Link></li>
                         </>
                         }
                     </ul>
@@ -41,10 +43,12 @@ const Navber = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 font-bold">
                     {navItems}
-                    {/* {user && <>
-                        <li><Link to='/mylist'>My List</Link></li>
+                    {user && <>
+                        <li><Link to='/addfood'>Add Food</Link></li>
+                        <li><Link to='/managefood'>Manage Food</Link></li>
+                        <li><Link to='/reqfood'>Requested Food</Link></li>
                     </>
-                    } */}
+                    }
                 </ul>
             </div>
             <div className="navbar-end gap-2">
@@ -79,7 +83,7 @@ const Navber = () => {
                         </>
                     }
                     <ul tabIndex={0} className="lg:hidden menu menu-sm fixed dropdown-content mt-1 z-[9999] p-2 shadow bg-base-100 rounded-box w-52">
-                        { user && <>
+                        {user && <>
                             <li className="pl-3 font-bold text-lg">{user.displayName}</li>
                             <li className="pl-3">{user.email}</li>
                             <li><a onClick={handleLogOut} >Logout</a></li>
