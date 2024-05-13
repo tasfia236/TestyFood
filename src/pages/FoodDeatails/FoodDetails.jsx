@@ -16,41 +16,20 @@ function getDate() {
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
-
+    const [remove, setRemove] = useState([]);
     const [currentDate, setCurrentDate] = useState(getDate());
     const food = useLoaderData();
 
-  //  const email = user?.email;
+    //  const email = user?.email;
 
-  //  console.log(food);
-    const { _id, email, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes } = food;
+    //  console.log(food);
+    const { _id, email, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes, intStatus } = food;
 
-    const handlerequestfood = () => {
-        console.log(food);
-        const email = user?.email
-        const reqdata = { food, email, currentDate}
-        console.log(reqdata);
-
-        axios.post('http://localhost:8000/requestfoodadd', reqdata)
-        .then(res => {
-            const data = res.data;
-            console.log(data);
-            if (data.insertedId){
-                Swal.fire({
-                    title: 'Success',
-                    text: 'Food Requested Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Done'
-                })
-            }
-        })
-    }
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         const from = e.target;
         const additional_notes = from.additional_notes.value;
-
+    //    const intStatus = 1;
         const data = { additional_notes }
         console.log(data);
 
@@ -75,6 +54,49 @@ const FoodDetails = () => {
                 }
             })
     }
+
+    const handlerequestfood = () => {
+        console.log(food);
+        const email = user?.email
+        const reqdata = { food, email, currentDate }
+        console.log(reqdata);
+
+        axios.post('http://localhost:8000/requestfoodadd', reqdata)
+            .then(res => {
+                const data = res.data;
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Food Requested Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Done'
+                    })
+                }
+            })
+    }
+
+    // const handleStateNotAvailable = (id) => {
+    //     fetch(`http://localhost:8000/removestatusfoods/${id}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ status: 1 })
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //            console.log(data);
+    //             if (data.modifiedCount > 0) {
+    //                 // update state
+    //                 const remaining = remove.filter(remove => remove._id !== id);
+    //                 const updated = remove.find(remove => remove._id === id);
+    //                 updated.status = 1
+    //                 const reqFoods = [updated, ...remaining];
+    //                 setRemove(reqFoods);
+    //             }
+    //          })
+    // }
 
     return (
         <div className="mx-8 lg:mx-24 mb-12">
@@ -124,7 +146,9 @@ const FoodDetails = () => {
                         </div>
                         <p><span className="font-bold">PickUp Location: </span>{pickup_location}</p>
                         <div>
-                            <button onClick={handlerequestfood} className="btn btn-sm btn-success text-white">Request</button>
+                        <button onClick={handlerequestfood} className="btn btn-sm btn-success text-white">Request</button>
+                        
+                            {/* <button onClick={() => { handlerequestfood(); handleStateNotAvailable() }} className="btn btn-sm btn-success text-white">Request</button> */}
                         </div>
                     </form>
                 </div>

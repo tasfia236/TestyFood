@@ -1,8 +1,8 @@
 
-const RequestTable = ({request}) => {
+const RequestTable = ({request, handleReqFoodDelete}) => {
 
-    const { _id, donator_name, pickup_location, expired_datetime } = request.food;
-    const { currentDate } = request
+    const { donator_name, pickup_location, expired_datetime } = request.food;
+    const { _id, currentDate } = request
     console.log(request);
 
     return (
@@ -17,7 +17,7 @@ const RequestTable = ({request}) => {
             <td>{expired_datetime}</td>
             <td>{currentDate}</td>
             <th>
-                <button onClick={() => handleDelete(_id)} className="btn btn-sm">Delete</button>
+                <button onClick={() => handleReqFoodDelete(_id)} className="btn btn-sm">Delete</button>
             </th>
         </tr>
     );

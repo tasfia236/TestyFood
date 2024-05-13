@@ -26,8 +26,12 @@ const AvailableFoods = () => {
         <div className=' mx-12 lg:mx-24 pb-8'>
             <h2 className="text-4xl text-center my-12 font-bold text-red-600">Available Food</h2>
             <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-8">
-                { 
-                    foods?.map(food => food.intStatus === 0 && <FoodCard key={food._id} food={food}></FoodCard>)
+                {
+                    foods?.map(food => food.intStatus === 0 &&
+                        <FoodCard
+                            key={food._id}
+                            food={food}>
+                        </FoodCard>)
                 }
             </div>
         </div>

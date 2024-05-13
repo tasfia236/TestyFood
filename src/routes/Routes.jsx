@@ -10,11 +10,14 @@ import AddFood from "../pages/AddFood/AddFood";
 import ManageFood from "../pages/ManageFood/ManageFood";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
 import RequestFood from "../pages/RequestFood/RequestFood";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const Routes = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
@@ -34,25 +37,25 @@ const Routes = createBrowserRouter([
         },
         {
           path: "/details/:id",
-          element: <FoodDetails></FoodDetails>,
+          element: <PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
           loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`)
         },
         {
           path: "/addfood",
-          element: <AddFood></AddFood>
+          element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>
         },
         {
           path: "/managefood",
-          element: <ManageFood></ManageFood>
+          element: <PrivateRoutes><ManageFood></ManageFood></PrivateRoutes>
         },
         {
           path: "/updatefood/:id",
-          element: <UpdateFood></UpdateFood>,
+          element: <PrivateRoutes><UpdateFood></UpdateFood></PrivateRoutes>,
           loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`)
         },
         {
           path: "/reqfood/",
-          element: <RequestFood></RequestFood>
+          element: <PrivateRoutes><RequestFood></RequestFood></PrivateRoutes>
         }
       ]
     },
