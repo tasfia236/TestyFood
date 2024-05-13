@@ -28,14 +28,18 @@ const ManageFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:8000/foods/${id}`, {
+                fetch(`http://localhost:8000/deletefoods/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
                         if (data.deletedCount > 0) {
-                            alert('deleted successful');
+                            Swal.fire(
+                                "Deleted!",
+                                "Food has been deleted.",
+                                "success"
+                            );
                             const remaining = added.filter(added => added._id !== id);
                             setAdded(remaining);
                         }

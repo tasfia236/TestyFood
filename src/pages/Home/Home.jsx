@@ -28,7 +28,7 @@ const Home = () => {
             <div className=" max-w-screen-2xl mx-auto">
                 <Banner></Banner>
                 <h2 className="text-4xl text-center my-12 font-bold text-red-600">Features</h2>
-                <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-y-5 ml-24 lg:ml-8 md:ml-12 sm:ml-20">
+                <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-y-5 mx-12 gap-8">
                     {
                         foods?.slice(0, 6).map(food => <Features key={food._id} food={food}></Features>)
                     }

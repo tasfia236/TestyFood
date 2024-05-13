@@ -1,8 +1,10 @@
 
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 function getDate() {
     const today = new Date();
@@ -13,7 +15,37 @@ function getDate() {
 }
 
 const FoodDetails = () => {
+    const { user } = useContext(AuthContext);
 
+    const [currentDate, setCurrentDate] = useState(getDate());
+    const food = useLoaderData();
+
+  //  const email = user?.email;
+
+  //  console.log(food);
+    const { _id, email, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes } = food;
+
+    const handlerequestfood = () => {
+        console.log(food);
+        const email = user?.email
+        const reqdata = { food, email, currentDate}
+        console.log(reqdata);
+
+        axios.post('http://localhost:8000/requestfoodadd', reqdata)
+        .then(res => {
+            const data = res.data;
+            console.log(data);
+            if (data.insertedId){
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Food Requested Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Done'
+                })
+            }
+        })
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const from = e.target;
@@ -44,20 +76,13 @@ const FoodDetails = () => {
             })
     }
 
-    const [currentDate, setCurrentDate] = useState(getDate());
-    const food = useLoaderData();
-
-    console.log(food);
-    const { _id, email, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes } = food;
-
-
     return (
         <div className="mx-8 lg:mx-24 mb-12">
             <Helmet>
                 <title>Testy Foos | Food Details</title>
             </Helmet>
 
-            <h2 className="text-4xl font-bold text-center pt-8 mb-12">Property Details</h2>
+            <h2 className="text-4xl font-bold text-center pt-8 mb-12">Food Details</h2>
             <div className="flex justify-evenly py-5">
                 <p className="text-xl"><span className="font-bold">Donar Name: </span>  {donator_name}</p>
                 <p className="text-xl"><span className="font-bold">Location: </span>  {pickup_location}</p>
@@ -99,7 +124,7 @@ const FoodDetails = () => {
                         </div>
                         <p><span className="font-bold">PickUp Location: </span>{pickup_location}</p>
                         <div>
-                            <button className="btn btn-sm btn-success text-white">Request</button>
+                            <button onClick={handlerequestfood} className="btn btn-sm btn-success text-white">Request</button>
                         </div>
                     </form>
                 </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-const Features = ({ food }) => {
+const FoodCard = ({ food }) => {
 
     const { _id, food_name, food_image, food_quantity, donator_image, donator_name, pickup_location, expired_datetime } = food;
 
@@ -39,4 +39,4 @@ const Features = ({ food }) => {
     );
 };
 
-export default Features;
+export default FoodCard;

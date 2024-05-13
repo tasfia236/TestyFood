@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import Features from '../Home/Features/Features';
+import FoodCard from './FoodCard';
 
 const AvailableFoods = () => {
 
@@ -20,12 +20,14 @@ const AvailableFoods = () => {
         return <p>{error.message}</p>
     }
 
+    console.log(foods);
+
     return (
         <div className=' mx-12 lg:mx-24 pb-8'>
-            <h2 className="text-4xl text-center my-12 font-bold text-red-600">Features</h2>
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-y-5">
-                {
-                    foods?.map(food => <Features key={food._id} food={food}></Features>)
+            <h2 className="text-4xl text-center my-12 font-bold text-red-600">Available Food</h2>
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-8">
+                { 
+                    foods?.map(food => food.intStatus === 0 && <FoodCard key={food._id} food={food}></FoodCard>)
                 }
             </div>
         </div>

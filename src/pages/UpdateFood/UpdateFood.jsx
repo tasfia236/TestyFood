@@ -1,10 +1,13 @@
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateFood = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
     const food = useLoaderData();
-    const { _id, food_name, food_image, food_quantity, additional_notes, pickup_location, expired_datetime, intStatus } = food;
+    const { _id, food_name, food_image, food_quantity, additional_notes, pickup_location, expired_datetime, donator_name, donator_email, donator_image, intStatus } = food;
     
     const handleUpdateFood = e => {
         e.preventDefault();
@@ -15,10 +18,13 @@ const UpdateFood = () => {
         const pickup_location = from.location.value;
         const additional_notes = from.additional_notes.value;
         const expired_datetime = from.expired.value;
+        const donator_name = from.donator_name.value;
+        const donator_email = from.donator_email.value;
+        const donator_image = from.donatorimage.value;
         const status = from.status.value;
     //    const intStatus = JSON.parse(status);
 
-        const UpdateFood = { food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, status };
+        const UpdateFood = { food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, donator_name, donator_email, donator_image, status };
         console.log(UpdateFood);
 
         fetch(`http://localhost:8000/updatefoods/${_id}`, {
@@ -38,6 +44,7 @@ const UpdateFood = () => {
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     })
+                    navigate(location?.state ? location.state : '/managefood')
                 }
             })
         }
@@ -81,6 +88,18 @@ const UpdateFood = () => {
                             <div>
                                 <label htmlFor="expired" className="block mb-2">Expired Date/Time:</label>
                                 <input type="text" id="expired" name="expired" defaultValue={expired_datetime} className="w-full px-3 py-2 border rounded-md" required />
+                            </div>
+                            <div>
+                                <label htmlFor="donator_name" className="block mb-2">Donator Name:</label>
+                                <input type="text" id="donator_name" name="donator_name" defaultValue={donator_name} className="w-full px-3 py-2 border rounded-md" required />
+                            </div>
+                            <div>
+                                <label htmlFor="donator_email" className="block mb-2">Donator Email:</label>
+                                <input type="text" id="donator_email" name="donator_email" defaultValue={donator_email} className="w-full px-3 py-2 border rounded-md" required />
+                            </div>
+                            <div>
+                                <label htmlFor="donatorimage" className="block mb-2">Donator image URL:</label>
+                                <input type="text" id="donatorimage" name="donatorimage" defaultValue={donator_image} className="w-full px-3 py-2 border rounded-md" required />
                             </div>
                             <div>
                                 <label htmlFor="additional_notes" className="block mb-2">Additional Notes:</label>

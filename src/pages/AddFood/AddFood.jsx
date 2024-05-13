@@ -12,7 +12,8 @@ const AddFood = () => {
         const from = e.target;
         const food_image = from.image.value;
         const food_name = from.food_name.value;
-        const food_quantity = from.food_quantity.value;
+        const quantity = from.food_quantity.value;
+        const food_quantity = JSON.parse(quantity);
         const pickup_location = from.location.value;
         const additional_notes = from.additional_notes.value;
         const expired_datetime = from.expired.value;
