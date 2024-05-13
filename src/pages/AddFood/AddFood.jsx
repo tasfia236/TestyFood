@@ -1,8 +1,11 @@
 import axios from "axios";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const AddFood = () => {
+    const {user} = useContext(AuthContext);
 
     const handleFood = (e) => {
         e.preventDefault();
@@ -18,8 +21,9 @@ const AddFood = () => {
         const donator_image = from.donatorimage.value;
         const status = from.status.value;
         const intStatus = JSON.parse(status);
+        const email = user?.email;
 
-        const newFood = { food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, donator_name, donator_email, donator_image, intStatus };
+        const newFood = { email, food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, donator_name, donator_email, donator_image, intStatus };
         console.log(newFood);
 
         axios.post('http://localhost:8000/foods', newFood)

@@ -48,7 +48,7 @@ const FoodDetails = () => {
     const food = useLoaderData();
 
     console.log(food);
-    const { _id, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes } = food;
+    const { _id, email, food_name, food_image, food_quantity, donator_email, donator_name, pickup_location, expired_datetime, additional_notes } = food;
 
 
     return (
@@ -84,8 +84,8 @@ const FoodDetails = () => {
             <div className="modal" role="dialog">
                 <div className="modal-box">
                     <form onSubmit={handleSubmit}>
-                        <h3 className="text-3xl font-bold\">\ { }</h3>
-                        <p><span className="font-bold">{food_name} </span>Requested Successfully.</p>
+                        <h3 className="text-xl font-bold">{email}</h3>
+                        <p><span className="font-bold">{food_name} </span>Requested Form.</p>
                         <p><span className="font-bold">Date: </span>{currentDate}</p>
                         <img className="w-20 pt-4" src={food_image} alt="" />
                         <p className="font-bold">Food Id: {_id}</p>

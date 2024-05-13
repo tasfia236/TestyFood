@@ -7,8 +7,8 @@ import cover4 from '../../assets/images/image4.jpeg'
 
 const Banner = () => {
     return (
-        <Carousel className=''>
-            <div><img className=' w-screen h-[500px]' src={cover2} alt="" /></div>
+        <Carousel className=' w-screen'>
+            <div><img className='h-[500px] w-screen' src={cover2} alt="" /></div>
             <div><img className=' w-screen h-[500px]' src={cover1} alt="" /></div>
             <div><img className=' w-screen h-[500px]' src={cover3} alt="" /></div>
             <div><img className=' w-screen h-[500px]' src={cover4} alt="" /></div>
