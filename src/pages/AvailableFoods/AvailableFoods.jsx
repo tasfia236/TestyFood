@@ -87,7 +87,7 @@ const AvailableFoods = () => {
                     </button>
                 </div>
             </div>
-            <div className={`grid lg:${layout} sm:grid-cols-1 gap-8`}>
+            <div className={`grid lg:${layout} sm:grid-cols-3 gap-8`}>
                 {searchResults.map(food => (
                     <FoodCard key={food._id} food={food} />
                 ))}

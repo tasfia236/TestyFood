@@ -83,7 +83,7 @@ const LogIn = () => {
                 const user = { email};
                 console.log(user);
 
-                axios.post('http://localhost:8000/auth/firebase/callback',user,  { withCredentials: true })
+                axios.post('http://localhost:8000/jwt',user,  { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                         if (res.data.success) {

@@ -11,7 +11,7 @@ function getDate() {
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
     const date = today.getDate();
-    return `${month}/${date}/${year}`;
+    return `${year}-${month}-${date}`;
 }
 
 const FoodDetails = () => {
@@ -76,27 +76,35 @@ const FoodDetails = () => {
             })
     }
 
-    // const handleStateNotAvailable = (id) => {
-    //     fetch(`http://localhost:8000/removestatusfoods/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ status: 1 })
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //            console.log(data);
-    //             if (data.modifiedCount > 0) {
-    //                 // update state
-    //                 const remaining = remove.filter(remove => remove._id !== id);
-    //                 const updated = remove.find(remove => remove._id === id);
-    //                 updated.status = 1
-    //                 const reqFoods = [updated, ...remaining];
-    //                 setRemove(reqFoods);
-    //             }
-    //          })
-    // }
+
+    const handleStatusAvailable = id => {
+        fetch(`http://localhost:8000/foods/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 1 })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Successfully Available',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    // update state
+                    const remaining = remove.filter(remove => remove._id !== id);
+                    const updated = remove.find(remove => remove._id === id);
+                    updated.status = 1
+                    const newFoods = [updated, ...remaining];
+                    setRemove(newFoods);
+                }
+            })
+    }
+
 
     return (
         <div className="mx-8 lg:mx-24 mb-12">
@@ -146,7 +154,7 @@ const FoodDetails = () => {
                         </div>
                         <p><span className="font-bold">PickUp Location: </span>{pickup_location}</p>
                         <div>
-                        <button onClick={handlerequestfood} className="btn btn-sm btn-success text-white">Request</button>
+                        <button onClick={() => {handleStatusAvailable(_id), handlerequestfood()}} className="btn btn-sm btn-success text-white">Request</button>
                         
                             {/* <button onClick={() => { handlerequestfood(); handleStateNotAvailable() }} className="btn btn-sm btn-success text-white">Request</button> */}
                         </div>
