@@ -6,7 +6,7 @@ const FoodCard = ({ food }) => {
     const { _id, food_name, food_image, food_quantity, donator_image, donator_name, pickup_location, expired_datetime } = food;
 
     return (
-        <div className="card lg:card-side h-[98%] lg:h-[300px] bg-base-100 shadow-xl ">
+        <div className="card lg:card-side h-full lg:h-[300px] bg-base-100 shadow-xl ">
             <figure className="h-[300px] lg:w-[45%]"><img className="w-full lg:h-full h-[350px]" src={food_image} alt="Album" /></figure>
             <div className="card-body sm:h-[30%]">
                 <h2 className="card-title text-red-400 font-black">{food_name}</h2>

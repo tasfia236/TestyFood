@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FoodCard from './FoodCard';
 
@@ -12,7 +12,13 @@ const AvailableFoods = () => {
     });
 
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState(foods);
+    const [searchResults, setSearchResults] = useState([]);
+    const [sortOption, setSortOption] = useState('Sorted By');
+    const [layout, setLayout] = useState('grid-cols-3');
+
+    useEffect(() => {
+        setSearchResults(foods);
+    }, [foods]);
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
@@ -23,6 +29,27 @@ const AvailableFoods = () => {
             food.food_name.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setSearchResults(filteredFoods);
+    };
+
+    const handleSortChange = (e) => {
+        const option = e.target.value;
+        setSortOption(option);
+
+        const sorted = [...searchResults];
+        sorted.sort((a, b) => {
+            const dateA = new Date(a.expired_datetime);
+            const dateB = new Date(b.expired_datetime);
+            if (option === "asc") {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+        setSearchResults(sorted);
+    };
+
+    const toggleLayout = () => {
+        setLayout(layout === 'grid-cols-3' ? 'grid-cols-2' : 'grid-cols-3');
     };
 
     if (isPending) {
@@ -36,17 +63,31 @@ const AvailableFoods = () => {
     return (
         <div className='mx-12 lg:mx-24 pb-8'>
             <h2 className="text-4xl text-center my-12 font-bold text-red-600">Available Food</h2>
-            <div className="flex justify-center mb-8">
-                <input
-                    type="text"
-                    placeholder="Search by food name"
-                    className="border border-gray-300 rounded-md px-4 py-2 mr-2"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                />
-                <button onClick={handleSearch} className="px-4 py-2 bg-blue-500 text-white rounded-md">Search</button>
+            <div className='flex justify-around items-center mb-8'>
+                <div className="flex justify-center">
+                    <input
+                        type="text"
+                        placeholder="Search by food name"
+                        className="border border-gray-300 rounded-md px-4 py-2 mr-2"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <button onClick={handleSearch} className="px-4 py-2 bg-sky-500 text-white rounded-md">Search</button>
+                </div>
+                <div className="flex justify-center my-4">
+                    <select className="bg-sky-500 text-white font-bold p-3 rounded-xl" id="sort" value={sortOption} onChange={handleSortChange}>
+                        <option disabled>Sorted By</option>
+                        <option value="asc">Expiry Date Ascending</option>
+                        <option value="desc">Expiry Date Descending</option>
+                    </select>
+                </div>
+                <div className="flex justify-center my-4">
+                    <button onClick={toggleLayout} className="px-4 py-2 bg-sky-500 text-white rounded-md">
+                        Change Layout
+                    </button>
+                </div>
             </div>
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-8">
+            <div className={`grid lg:${layout} sm:grid-cols-1 gap-8`}>
                 {searchResults.map(food => (
                     <FoodCard key={food._id} food={food} />
                 ))}
