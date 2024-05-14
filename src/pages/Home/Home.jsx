@@ -29,7 +29,7 @@ const Home = () => {
         <div className="bg-image glass pb-8">
             <div className=" max-w-screen-2xl mx-auto">
                 <Banner></Banner>
-                <Services></Services>
+                <Choose></Choose>
                 <h2 className="text-4xl text-center my-12 font-bold text-red-600">Features</h2>
                 <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-y-5 mx-12 gap-8">
                     {
@@ -40,7 +40,8 @@ const Home = () => {
                     <Link to='/availablefood'><button className="btn btn-neutral">All Tourist Spots</button></Link>
                 </div>
             </div>
-            <Choose></Choose>
+            
+            <Services></Services>
         </div>
     );
 };

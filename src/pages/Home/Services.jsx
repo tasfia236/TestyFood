@@ -5,7 +5,7 @@ import crust from '../../assets/crust.png'
 const Services = () => {
     return (
         <div>
-            <h1 className='font-bold text-2xl text-center mt-20 text-red-500'>Our Services</h1>
+            <h1 className='font-bold text-3xl text-center mt-20 text-red-800'>Our Services</h1>
             <div className="flex ">
             
             <div className='flex mt-12 '>
