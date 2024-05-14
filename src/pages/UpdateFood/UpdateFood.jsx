@@ -57,7 +57,7 @@ const UpdateFood = () => {
             </Helmet>
             <div className="">
                 <div className="text-center lg:text-left mb-8">
-                    <h1 className="text-5xl font-bold">Add Food!</h1>
+                    <h1 className="text-5xl font-bold">Update Food!</h1>
                 </div>
                 <div className="card shadow-2xl bg-base-100">
                     <form onSubmit={handleUpdateFood} className="card-body">

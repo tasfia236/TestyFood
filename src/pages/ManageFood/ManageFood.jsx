@@ -52,6 +52,34 @@ const ManageFood = () => {
         return <span className="loading loading-infinity loading-lg"></span>
     }
 
+    const handleStatusAvailable = id => {
+        fetch(`http://localhost:8000/statusfoods/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 0 })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Successfully Available',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    // update state
+                    const remaining = added.filter(added => added._id !== id);
+                    const updated = added.find(added => added._id === id);
+                    updated.status = 0
+                    const newFoods = [updated, ...remaining];
+                    setAdded(newFoods);
+                }
+            })
+    }
+
     return (
         <div>
             <h2 className="text-5xl">My Added Foods: {added.length}</h2>
@@ -75,6 +103,7 @@ const ManageFood = () => {
                                 key={added._id}
                                 added={added}
                                 handleDelete={handleDelete}
+                                handleStatusAvailable={handleStatusAvailable}
                             ></ManageTable>)
                         }
                     </tbody>

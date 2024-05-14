@@ -1,13 +1,16 @@
 
 const RequestTable = ({request, handleReqFoodDelete}) => {
 
-    const { donator_name, pickup_location, expired_datetime } = request.food;
+    const { food_name, donator_name, pickup_location, expired_datetime } = request.food;
     const { _id, currentDate } = request
     console.log(request);
 
     return (
 
         <tr>
+            <td>
+                {food_name}
+            </td>
             <td>
                 {donator_name}
             </td>

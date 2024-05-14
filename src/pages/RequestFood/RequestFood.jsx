@@ -63,6 +63,7 @@ const RequestFood = () => {
                     {/* head */}
                     <thead>
                         <tr>
+                            <th>Food Nmae</th>
                             <th>Donar Name</th>
                             <th>PickUp Location</th>
                             <th>Expire Date</th>

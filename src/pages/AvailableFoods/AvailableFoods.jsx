@@ -88,9 +88,9 @@ const AvailableFoods = () => {
                 </div>
             </div>
             <div className={`grid lg:${layout} sm:grid-cols-3 gap-8`}>
-                {searchResults.map(food => (
+                {searchResults.map(food => food.intStatus === 0 &&
                     <FoodCard key={food._id} food={food} />
-                ))}
+                )}
             </div>
         </div>
     );

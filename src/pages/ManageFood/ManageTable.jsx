@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ManageTable = ({ added, handleDelete }) => {
+const ManageTable = ({ added, handleDelete, handleStatusAvailable }) => {
 
     const { _id, food_image, food_name, food_quantity, pickup_location, intStatus } = added;
 
@@ -21,7 +21,7 @@ const ManageTable = ({ added, handleDelete }) => {
             <th>
                 {
                     intStatus === 0 ? <span className="font-bold text-primary">Available</span> 
-                    : <button className="btn btn-ghost btn-xs">Not Available</button>
+                    : <button onClick={() => handleStatusAvailable(_id)} className="btn btn-ghost btn-xs">Please Available</button>
             
                 }
             </th>

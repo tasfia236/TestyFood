@@ -77,11 +77,11 @@ const FoodDetails = () => {
     }
 
 
-    const handleStatusAvailable = id => {
-        fetch(`http://localhost:8000/foods/${id}`, {
-            method: 'PATCH',
+    const handleStatusNotAvailable = id => {
+        fetch(`http://localhost:8000/statusfoods/${id}`, {
+           method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+               'content-type': 'application/json'
             },
             body: JSON.stringify({ status: 1 })
         })
@@ -96,7 +96,7 @@ const FoodDetails = () => {
                         confirmButtonText: 'Ok'
                     })
                     // update state
-                    const remaining = remove.filter(remove => remove._id !== id);
+                   const remaining = remove.filter(remove => remove._id !== id);
                     const updated = remove.find(remove => remove._id === id);
                     updated.status = 1
                     const newFoods = [updated, ...remaining];
@@ -154,9 +154,9 @@ const FoodDetails = () => {
                         </div>
                         <p><span className="font-bold">PickUp Location: </span>{pickup_location}</p>
                         <div>
-                        <button onClick={() => {handleStatusAvailable(_id), handlerequestfood()}} className="btn btn-sm btn-success text-white">Request</button>
-                        
-                            {/* <button onClick={() => { handlerequestfood(); handleStateNotAvailable() }} className="btn btn-sm btn-success text-white">Request</button> */}
+                        {/* <button onClick={handlerequestfood} className="btn btn-sm btn-success text-white">Request</button>
+                         */}
+                        <button onClick={() => { handlerequestfood(); handleStatusNotAvailable(_id) }} className="btn btn-sm btn-success text-white">Request</button>
                         </div>
                     </form>
                 </div>
