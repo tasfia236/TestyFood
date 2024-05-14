@@ -7,7 +7,7 @@ const Choose = () => {
         <div className='bg-slate-50 p-5 mt-20'>
            <div className='text-center   space-y-5'>
            <h1 className='font-bold text-2xl text-red-500'>Choose & Enjoy</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br /> Expedita et ullam eveniet, maxime consequuntur soluta odit quae corporis possimus laborum?</p>
+            <p>Choosing and enjoying food is a delightful journey <br /> that involves exploring flavors, textures, and cuisines.</p>
            </div>
            <div className='flex max-w-[1000px] ml-[35%] gap-6 items-center mt-10'>
            <img src={burger}  className='w-[10%] h-[10%] btn-circle'  alt="" />

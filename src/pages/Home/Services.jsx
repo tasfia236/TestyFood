@@ -15,7 +15,7 @@ const Services = () => {
                     </div>
                     <div>
                         <h1>CATERING & EVENTS</h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum maxime ipsa <br /> </p>
+                        <p>Catering allows for tailored menus to suit the occasion, whether its a wedding, corporate event.<br /> </p>
                     </div>
 
                 </div>
@@ -25,7 +25,7 @@ const Services = () => {
                     </div>
                     <div>
                         <h1>WORK AT CRUST PIZZA</h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum maxime ipsa <br /> </p>
+                        <p>Crust Pizza fosters a team-oriented work environment where collaboration and communication are essential<br /> </p>
                     </div>
 
                 </div>
@@ -35,7 +35,7 @@ const Services = () => {
                     </div>
                     <div>
                         <h1>OWN A CRUST PIZZA</h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum maxime ipsa <br /> </p>
+                        <p>Crust Pizza offers a diverse menu of gourmet pizzas, sides, and desserts, with a focus on fresh, high-quality ingredients and innovative flavor combinations<br /> </p>
                     </div>
 
                 </div>
