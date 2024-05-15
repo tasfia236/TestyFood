@@ -27,7 +27,7 @@ const AddFood = () => {
         const newFood = { email, food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, donator_name, donator_email, donator_image, intStatus };
         console.log(newFood);
 
-        axios.post('http://localhost:8000/foods', newFood)
+        axios.post('https://testy-food-server-ten.vercel.app/foods', newFood)
         .then(res => {
             const data = res.data;
             console.log(data);

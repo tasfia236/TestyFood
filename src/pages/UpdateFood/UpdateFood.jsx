@@ -27,7 +27,7 @@ const UpdateFood = () => {
         const UpdateFood = { food_image, food_name, food_quantity, pickup_location, additional_notes, expired_datetime, donator_name, donator_email, donator_image, status };
         console.log(UpdateFood);
 
-        fetch(`http://localhost:8000/updatefoods/${_id}`, {
+        fetch(`https://testy-food-server-ten.vercel.app/updatefoods/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

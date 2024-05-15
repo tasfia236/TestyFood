@@ -21,7 +21,7 @@ const Home = () => {
     const { isPending, isError, error, data: foods } = useQuery({
         queryKey: ['foods'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/foods');
+            const res = await fetch('https://testy-food-server-ten.vercel.app/foods');
             return res.json();
         }
     })

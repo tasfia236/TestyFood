@@ -38,7 +38,7 @@ const Routes = createBrowserRouter([
         {
           path: "/details/:id",
           element: <PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
-          loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`)
+          loader: ({params}) => fetch(`https://testy-food-server-ten.vercel.app/foods/${params.id}`)
         },
         {
           path: "/addfood",
@@ -51,7 +51,7 @@ const Routes = createBrowserRouter([
         {
           path: "/updatefood/:id",
           element: <PrivateRoutes><UpdateFood></UpdateFood></PrivateRoutes>,
-          loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`)
+          loader: ({params}) => fetch(`https://testy-food-server-ten.vercel.app/foods/${params.id}`)
         },
         {
           path: "/reqfood/",

@@ -8,7 +8,7 @@ const ManageFood = () => {
     const { user, loading } = useContext(AuthContext);
     const [added, setAdded] = useState([]);
 
-    const url = `http://localhost:8000/managefoods?email=${user?.email}`;
+    const url = `https://testy-food-server-ten.vercel.app/managefoods?email=${user?.email}`;
     useEffect(() => {
 
         axios.get(url, { withCredentials: true })
@@ -28,7 +28,7 @@ const ManageFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:8000/deletefoods/${id}`, {
+                fetch(`https://testy-food-server-ten.vercel.app/deletefoods/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -53,7 +53,7 @@ const ManageFood = () => {
     }
 
     const handleStatusAvailable = id => {
-        fetch(`http://localhost:8000/statusfoods/${id}`, {
+        fetch(`https://testy-food-server-ten.vercel.app/statusfoods/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

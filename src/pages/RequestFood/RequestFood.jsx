@@ -10,7 +10,7 @@ const RequestFood = () => {
     const [request, setRequest] = useState([]);
     const [added, setAdded] = useState([]);
 
-    const url = `http://localhost:8000/requestfoods?email=${user?.email}`;
+    const url = `https://testy-food-server-ten.vercel.app/requestfoods?email=${user?.email}`;
     useEffect(() => {
 
         axios.get(url, { withCredentials: true })
@@ -31,7 +31,7 @@ const RequestFood = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:8000/deletereqfoods/${id}`, {
+                fetch(`https://testy-food-server-ten.vercel.app/deletereqfoods/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

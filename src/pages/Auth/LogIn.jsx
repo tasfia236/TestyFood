@@ -28,7 +28,7 @@ const LogIn = () => {
                 const user = { email }
                 console.log(user);
 
-                axios.post('http://localhost:8000/jwt', user, { withCredentials: true })
+                axios.post('https://testy-food-server-ten.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                         if (res.data.success) {
@@ -84,7 +84,7 @@ const LogIn = () => {
                 const user = { email };
                 console.log(user);
 
-                axios.post('http://localhost:8000/jwt', user, { withCredentials: true })
+                axios.post('https://testy-food-server-ten.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                         if (res.data.success) {

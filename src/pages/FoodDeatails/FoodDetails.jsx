@@ -34,7 +34,7 @@ const FoodDetails = () => {
         console.log(data);
 
 
-        fetch(`http://localhost:8000/foods/${_id}`, {
+        fetch(`https://testy-food-server-ten.vercel.app/foods/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -61,7 +61,7 @@ const FoodDetails = () => {
         const reqdata = { food, email, currentDate }
         console.log(reqdata);
 
-        axios.post('http://localhost:8000/requestfoodadd', reqdata)
+        axios.post('https://testy-food-server-ten.vercel.app/requestfoodadd', reqdata)
             .then(res => {
                 const data = res.data;
                 console.log(data);
@@ -78,7 +78,7 @@ const FoodDetails = () => {
 
 
     const handleStatusNotAvailable = id => {
-        fetch(`http://localhost:8000/statusfoods/${id}`, {
+        fetch(`https://testy-food-server-ten.vercel.app/statusfoods/${id}`, {
            method: 'PATCH',
             headers: {
                'content-type': 'application/json'
