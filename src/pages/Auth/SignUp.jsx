@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import authpic from "../../assets/authpic.jpg"
 
 const SignUp = () => {
     const { createUser, updateUser } = useContext(AuthContext);
@@ -76,7 +77,10 @@ const SignUp = () => {
                 <div className="text-center lg:text-left mb-8">
                     <h1 className="text-5xl font-bold">Register now!</h1>
                 </div>
-                <div className="card shadow-2xl bg-base-100">
+                <div className="card lg:card-side shadow-2xl bg-base-100">
+                    <div className="lg:w-[52%] lg:h-[60%]">
+                        <img className="w-full h-96 lg:h-[480px]" src={authpic} alt="" />
+                    </div>
                     <form onSubmit={handleregister} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -108,10 +112,11 @@ const SignUp = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
+                        <p className="pl-5">
+                            Already have an account? <Link to='/login'> <button className="btn btn-link">LogIn</button></Link>
+                        </p>
                     </form>
-                    <p className="pl-5">
-                        Already have an account? <Link to='/login'> <button className="btn btn-link">LogIn</button></Link>
-                    </p>
+
                 </div>
             </div>
         </div>
