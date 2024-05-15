@@ -2,7 +2,7 @@ import logo from "../../assets/images/logo.jpeg";
 const Footer = () => {
     return (
         <div className="">
-            <footer className="footer flex justify-evenly p-10 bg-base-200 text-base-content">
+            <footer className="footer flex flex-col lg:flex-row items-center justify-evenly p-10 bg-base-200 text-base-content">
                 <aside className=" footer-center">
                     <img src={logo} className="w-40 pt-6" alt="" />
                 </aside>

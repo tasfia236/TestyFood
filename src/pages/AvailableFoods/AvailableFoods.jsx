@@ -75,7 +75,7 @@ const AvailableFoods = () => {
     return (
         <div className='mx-12 lg:mx-24 pb-8'>
             <h2 className="text-4xl text-center my-12 font-bold text-red-600">Available Food</h2>
-            <div className='flex justify-around items-center mb-8'>
+            <div className='flex flex-col lg:flex-row justify-around items-center mb-8'>
                 <div className="flex justify-center">
                     <input
                         type="text"
@@ -104,7 +104,7 @@ const AvailableFoods = () => {
                     animate={animationControl}
                     transition={{ duration: 0.1 }}
                 >
-            <div className={`grid lg:${layout} sm:grid-cols-3 gap-8`}>
+            <div className={`grid grid-cols-3 lg:${layout} sm:${layout} gap-8`}>
                 {searchResults.map(food => food.intStatus === 0 &&
                     <FoodCard key={food._id} food={food} />
                 )}

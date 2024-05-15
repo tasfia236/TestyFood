@@ -6,10 +6,10 @@ const Services = () => {
     return (
         <div>
             <h1 className='font-bold text-3xl text-center mt-20 text-red-800'>Our Services</h1>
-            <div className="flex ">
+            <div className="flex flex-col lg:flex-row">
             
-            <div className='flex mt-12 '>
-                <div className='  h-[200px] w-[50%] rec bg-slate-50 space-y-4 flex justify-center gap-2 items-center' >
+            <div className='flex flex-col lg:flex-row mt-12 '>
+                <div className='h-[200px] lg:w-[50%] rec bg-slate-50 space-y-4 flex justify-center gap-2 items-center' >
                     <div>
                         <img src={burger} className='w-[50%] h-[50%] btn-circle ml-6' alt="" />
                     </div>
@@ -19,7 +19,7 @@ const Services = () => {
                     </div>
 
                 </div>
-                <div className='  h-[200px] w-[50%] rec bg-slate-300  space-y-4 flex justify-center gap-2 items-center' >
+                <div className='  h-[200px] lg:w-[50%] rec bg-slate-300  space-y-4 flex justify-center gap-2 items-center' >
                     <div>
                         <img src={pizza} className='w-[50%] h-[50%] btn-circle ml-6' alt="" />
                     </div>
@@ -29,7 +29,7 @@ const Services = () => {
                     </div>
 
                 </div>
-                <div className='  h-[200px] w-[50%] rec  bg-slate-400  space-y-4 flex justify-center gap-2 items-center' >
+                <div className='  h-[200px] lg:w-[50%] rec  bg-slate-400  space-y-4 flex justify-center gap-2 items-center' >
                     <div>
                         <img src={crust} className='w-[50%] h-[50%] btn-circle ml-6' alt="" />
                     </div>
