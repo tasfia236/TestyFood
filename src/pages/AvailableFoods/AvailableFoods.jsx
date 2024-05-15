@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FoodCard from './FoodCard';
-import { motion, useAnimation, useViewportScroll } from 'framer-motion';
 
 const AvailableFoods = () => {
 
-    const { scrollYProgress } = useViewportScroll();
-    const animationControl = useAnimation();
-
-    useEffect(() => {
-        scrollYProgress.onChange((latest) => {
-            animationControl.start({ opacity: latest });
-        });
-    }, [scrollYProgress, animationControl]);
-
-    
     const { isPending, isError, error, data: foods } = useQuery({
         queryKey: ['foods'],
         queryFn: async () => {
@@ -99,17 +88,11 @@ const AvailableFoods = () => {
                     </button>
                 </div>
             </div>
-            <motion.div
-                    initial={{ opacity: 0.9 }}
-                    animate={animationControl}
-                    transition={{ duration: 0.1 }}
-                >
             <div className={`grid grid-cols-3 lg:${layout} sm:${layout} gap-8`}>
                 {searchResults.map(food => food.intStatus === 0 &&
                     <FoodCard key={food._id} food={food} />
                 )}
             </div>
-            </motion.div>
         </div>
     );
 };

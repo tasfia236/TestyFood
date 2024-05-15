@@ -8,3 +8,14 @@
     background-size: cover;
     /* background: rgba(255, 122, 89, .1); */
 }
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--red);
+    transform-origin: 0%;
+  }
+  
