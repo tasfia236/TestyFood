@@ -12,7 +12,7 @@ Welcome to Testy Food, where deliciousness meets freshness! Explore our diverse 
 <strong> HTML, CSS, TailwindCSS, Nodejs, MongoDB, Firebase, React route </strong>
 
 ## <strong> * How to Clone and Run a Project Locally </strong>
-* step 1: git clone https://github.com/tasfia236/LibertyTours.git
+* step 1: git clone https://github.com/tasfia236/TestyFood.git
 * step 2: npm install
 * step 3: Create and edit the .env file as needed.
 * step 4: npm run dev
