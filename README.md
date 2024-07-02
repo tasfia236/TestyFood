@@ -1,8 +1,18 @@
-# React + Vite
+## WebSite Name: Testy Food
+Welcome to Testy Food, where deliciousness meets freshness! Explore our diverse menu featuring a variety of mouth-watering dishes crafted with the finest ingredients.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Hosting URL: https://testy-food-86b21.web.app/
 
-Currently, two official plugins are available:
+## Features:
+1. 	Detailed information on each food including ingredients
+2. Sorted by All available foods
+3. Easily add, edit, or remove menu items and keep track of inventory.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## <strong> Technologies: </strong>
+<strong> HTML, CSS, TailwindCSS, Nodejs, MongoDB, Firebase, React route </strong>
+
+## <strong> * How to Clone and Run a Project Locally </strong>
+* step 1: git clone https://github.com/tasfia236/LibertyTours.git
+* step 2: npm install
+* step 3: Create and edit the .env file as needed.
+* step 4: npm run dev
